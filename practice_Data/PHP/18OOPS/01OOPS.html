@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>OOPS</h2>
+    <p>Object Oriented Programming System/structure</p>
+    <ol>
+        <li>Encapsulation</li>
+        <li>Inheritance</li>
+        <li>Abstraction</li>
+        <li>Polimorphysum</li>
+    </ol>
+
+    <p>Encapsulation is a proceess to wrap data into a single unit its done throgh the CLASS</p>
+    <p>class is an example of encapsulation</p>
+    <p>class is a collection of datamember and member functions only</p>
+    <p>data member is a variable that have scope to access within class </p>
+    <p>Without instance of class we are not able to access the property of that class at out side of the class</p>
+    <p>instance qual object</p>
+    <p>with the help of new keyword we can craete an instance of class</p>
+    <script>
+        class mathOp{
+            data = "checking"
+            addition(a, b) {
+                let test = "checking test"
+                console.log(this.data);
+                console.log(test);
+                a + b
+            }
+            subtraction(a, b) {
+                console.log(test);
+                console.log(this.data);
+                a - b
+            }
+            division(a, b) {
+                a / b
+            }
+        }
+        let mathOpObject = new mathOp;
+        mathOpObject.addition(50,90)
+        mathOpObject.subtraction(50,90)
+    </script>
+</body>
+
+</html>

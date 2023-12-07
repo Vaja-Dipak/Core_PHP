@@ -1,0 +1,34 @@
+
+Git Command 
+
+create Git repo
+
+clone it in ur local machine
+
+git clone https://github.com/jay-amin-tops/21OctLaravelTTS_03.git
+
+select that folder cd 21OctLaravelTTS_03
+
+git add .
+
+git commit -m "msg"
+
+git push
+
+
+
+
+
+
+
+jay amin is inviting you to a scheduled Zoom meeting.
+
+Topic: 21OctLaravelTTS_03
+Time: Oct 26, 2023 03:00 PM India
+
+Join Zoom Meeting
+https://us05web.zoom.us/j/87145263246?pwd=XdSW2a67tqxGbqfzWAw06Fv1e275Pl.1
+
+Meeting ID: 871 4526 3246
+Passcode: tops
+
