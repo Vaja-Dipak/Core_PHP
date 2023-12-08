@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/_vendor/bootstrap/dist/css/bootstrap.css">
     <title>header</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
@@ -28,12 +30,18 @@
                         <a class="nav-link" href="about.php">About</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <form action="logout.php" class="d-flex">
+
+                    <?php if (isset($_COOKIE)) { ?>
+
+                        <button name="submit" class="btn btn-secondary me-4 px-4">Logout</button>
+
+                    <?php } ?>
+
                 </form>
             </div>
         </div>
     </nav>
 </body>
+
 </html>
