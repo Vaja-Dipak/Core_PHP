@@ -1,0 +1,121 @@
+
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:27 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:28 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:47:28 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:48:09 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:48:09 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:51:35 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:51:35 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:53:52 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:53:52 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:54:05 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:54:05 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:56:09 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:56:09 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:56:28 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:56:28 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:58:37 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:58:37 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:59:07 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 06:59:07 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:01:51 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:01:51 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:02:51 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:02:51 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:03:35 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:03:35 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:03:50 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:03:50 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:04:01 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:04:01 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:05:22 PM
+
+Error data >>> Unknown database 'practcedb'
+Error time >>> 07:05:22 PM
+
+Error data >>> Unknown database 'practcedb'
