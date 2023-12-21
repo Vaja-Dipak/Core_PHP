@@ -14,12 +14,8 @@
         <form method="post" class="form">
             <div class="column">
                 <div class="input-box">
-                    <label>First Name</label>
-                    <input type="text" name="fname" placeholder="Enter First name" required />
-                </div>
-                <div class="input-box">
-                    <label>Last Name</label>
-                    <input type="text" name="lname" placeholder="Enter Last name" required />
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Enter Username" required />
                 </div>
             </div>
 

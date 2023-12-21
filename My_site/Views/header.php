@@ -70,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-lg-auto text-lg-right text-center">
 						<li class="nav-item active">
-							<a class="nav-link" href="index.html">Home
+							<a class="nav-link" href="home">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -92,7 +92,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Me</a>
+							<a class="nav-link" href="#contact-me">Contact Me</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -109,6 +109,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</nav>
 		</header>
 		<!-- //header -->
-	</div>
+	
 </body>
 </html>
