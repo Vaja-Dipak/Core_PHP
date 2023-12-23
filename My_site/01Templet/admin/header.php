@@ -10,7 +10,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?php echo $this->assetsurl; ?>admin_assets/css/style-starter.css">
   <!-- google fonts -->
-  <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
+  <!-- <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet"> -->
 </head>
 
 <body class="sidebar-menu-collapsed">
@@ -21,13 +21,13 @@
 
     <!-- logo start -->
     <div class="logo">
-      <h1><a href="dashboard">Collective</a></h1>
+      <h1><a href="index.html">Collective</a></h1>
     </div>
 
   <!-- if logo is image enable this -->
     <!-- image logo --
     <div class="logo">
-      <a href="dashboard">
+      <a href="index.html">
         <img src="image-path" alt="Your logo" title="Your logo" class="img-fluid" style="height:35px;" />
       </a>
     </div>
@@ -48,13 +48,14 @@
           <a href="#"><i class="fa fa-cogs"></i>
             <span>Elements <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
-            <li><a href="carousels">Carousels</a> </li>
-            <li><a href="cards">cards</a> </li>
+            <li><a href="carousels.html">Carousels</a> </li>
+            <li><a href="cards.html">Default cards</a> </li>
             <li><a href="people">People cards</a></li>
           </ul>
         </li>
-        <li><a href="blocks"><i class="fa fa-th"></i> <span>Content blocks</span></a></li>
-        <li><a href="forms"><i class="fa fa-file-text"></i> <span>Forms</span></a></li>
+        <li><a href="pricing.html"><i class="fa fa-table"></i> <span>Pricing tables</span></a></li>
+        <li><a href="blocks.html"><i class="fa fa-th"></i> <span>Content blocks</span></a></li>
+        <li><a href="forms.php"><i class="fa fa-file-text"></i> <span>Forms</span></a></li>
       </ul>
       <!-- //sidebar nav end -->
       <!-- toggle button start -->

@@ -19,69 +19,66 @@
                     </div>
                     <div class="card-body">
                         <form method="post" enctype="multipart/form-data">
+                            <?php
+                            // echo "<pre>";
+                            // print_r($updtsel['data']);
+                            // echo "</pre>";
+                            foreach ($updtsel['data'] as $key => $value) {
+                                // echo $value->username;
+
+                            }
+                            ?>
                             <table class="table">
-                                <input type="hidden" Name="id" value="<?php echo $updtsel['data'][0]->id; ?>">
+                                <input type="hidden" Name="id" value="<?php echo $value->id; ?>">
                                 <tr>
                                     <td class="p-2">User Name</td>
                                     <td class="p-2"><input type="text" class="form-control" Name="username"
-                                            value="<?php echo $updtsel['data'][0]->username; ?>"></td>
+                                            value="<?php echo $value->username; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Email</td>
                                     <td class="p-2"><input type="email" class="form-control" Name="email"
-                                            value="<?php echo $updtsel['data'][0]->email; ?>"></td>
+                                            value="<?php echo $value->email; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Mobile</td>
                                     <td class="p-2"><input type="number" class="form-control" Name="mobile"
-                                            value="<?php echo $updtsel['data'][0]->mobile; ?>"></td>
+                                            value="<?php echo $value->mobile; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Birth</td>
                                     <td class="p-2"><input type="date" class="form-control" Name="birth"
-                                            value="<?php echo $updtsel['data'][0]->birth; ?>"></td>
+                                            value="<?php echo $value->birth; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Gender</td>
-                                    <td>
-                                        <div class="gender-option">
-                                            <!-- ----------------------------------- -->
-                                        </div>
-                                    </td>
+                                    <td class="p-2"><input type="text" class="form-control" Name="gender"
+                                            value="<?php echo $value->gender; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Address</td>
                                     <td class="p-2"><input type="text" class="form-control" Name="address"
-                                            value="<?php echo $updtsel['data'][0]->address; ?>"></td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2">City</td>
-                                    <td>
-                                        <select class="form-control" name="country" id="">
-                                            <?php foreach ($citys['data'] as $key => $value) { ?>
-                                                <option <?php if ($updtsel['data'][0]->city == $value->city_id) {
-                                                    echo " selected ";
-                                                } ?> value="<?php echo "$value->city_name"; ?>">
-                                                    <?php echo "$value->city_name"; ?>
-                                                </option>
-                                            <?php } ?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2">State</td>
-                                    <td class="p-2"><input type="text" class="form-control" Name="state"
-                                            value="<?php echo $updtsel['data'][0]->state; ?>"></td>
+                                            value="<?php echo $value->address; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Country</td>
                                     <td class="p-2"><input type="text" class="form-control" Name="country"
-                                            value="<?php echo $updtsel['data'][0]->country; ?>"></td>
+                                            value="<?php echo $value->country; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2">State</td>
+                                    <td class="p-2"><input type="text" class="form-control" Name="state"
+                                            value="<?php echo $value->state; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2">City</td>
+                                    <td class="p-2"><input type="text" class="form-control" Name="city"
+                                            value="<?php echo $value->city; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Password</td>
                                     <td class="p-2"><input type="text" class="form-control" Name="password"
-                                            value="<?php echo $updtsel['data'][0]->password; ?>"></td>
+                                            value="<?php echo $value->password; ?>"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="text-center">

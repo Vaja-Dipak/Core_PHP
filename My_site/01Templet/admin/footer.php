@@ -1,4 +1,4 @@
-<!--footer section start-->
+  <!--footer section start-->
 <footer class="dashboard">
   <p>&copy 2020 Collective. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank"
       class="text-primary">W3layouts.</a></p>
@@ -71,17 +71,19 @@
 </script>
 <!-- disable body scroll when navbar is in active -->
 
-<!-- loading-gif Js -->
-<script src="<?php echo $this->assetsurl; ?>admin_assets/js/modernizr.js"></script>
-<script>
-  $(window).load(function () {
-    // Animate loader off screen
-    $(".se-pre-con").fadeOut("slow");;
-  });
-</script>
-<!--// loading-gif Js -->
+ <!-- loading-gif Js -->
+ <script src="<?php echo $this->assetsurl; ?>admin_assets/js/modernizr.js"></script>
+ <script>
+     $(window).load(function () {
+         // Animate loader off screen
+         $(".se-pre-con").fadeOut("slow");;
+     });
+ </script>
+ <!--// loading-gif Js -->
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo $this->assetsurl; ?>admin_assets/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

@@ -33,9 +33,19 @@ class Model
         // echo"</pre>";
 
         $sql = "INSERT INTO $table($colm) VALUES('$val')";
-        $this->db->query($sql);
+        $sqlexe=$this->db->query($sql);
         // echo $this->db->affected_rows();
         // echo $sql;
+        if ($sqlexe > 0) {
+            $Res["code"] = 1;
+            $Res["msg"] = "Success";
+            $Res["data"] = 1;
+        } else {
+            $Res["code"] = 0;
+            $Res["msg"] = "Try again";
+            $Res["data"] = 0;
+        }
+        return $Res;
     }
     function login($uname, $pass)
     {

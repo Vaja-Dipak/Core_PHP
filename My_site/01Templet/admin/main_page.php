@@ -122,9 +122,11 @@
                         <th>Birth</th>
                         <th>Gender</th>
                         <th>Address</th>
+                        <th>Password</th>
                         <th>Profile</th>
                         <th>Active</th>
-                        <th>Action</th>
+                        <th>Update</th>
+
                       </tr>
                     </thead>
                     <?php
@@ -150,7 +152,10 @@
                           <?php echo $u->gender; ?>
                         </td>
                         <td>
-                          <?php echo $u->address . "," . $u->city . ",<br>" . $u->state . "," . $u->country; ?>
+                          <?php echo $u->address . "," . $u->city . "," . $u->state . "," . $u->country; ?>
+                        </td>
+                        <td>
+                          <?php echo $u->password; ?>
                         </td>
                         <td>
                           <?php echo $u->profile_pic; ?>
