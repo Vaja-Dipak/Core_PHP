@@ -33,7 +33,7 @@ class Model
         // echo"</pre>";
 
         $sql = "INSERT INTO $table($colm) VALUES('$val')";
-        $sqlexe=$this->db->query($sql);
+        $sqlexe = $this->db->query($sql);
         // echo $this->db->affected_rows();
         // echo $sql;
         if ($sqlexe > 0) {
@@ -75,12 +75,12 @@ class Model
             foreach ($where as $key => $value) {
                 $sql .= " $key = $value AND";
             }
-            $sql = rtrim($sql,"AND");
+            $sql = rtrim($sql, "AND");
         }
         $sqlexe = $this->db->query($sql);
-        if($sqlexe->num_rows > 0){
-            while($data=$sqlexe->fetch_object()){
-                $fetchdata[]=$data;
+        if ($sqlexe->num_rows > 0) {
+            while ($data = $sqlexe->fetch_object()) {
+                $fetchdata[] = $data;
             }
             $Res['code'] = 1;
             $Res['msg'] = "success";
@@ -92,18 +92,28 @@ class Model
         }
         return $Res;
     }
-    function update($tbl,$data, $id)
+    function update($tbl, $data, $id)
     {
-        $sql="UPDATE $tbl SET ";
+        $sql = "UPDATE $tbl SET ";
         // $keys=implode(array_keys($data));
         foreach ($data as $key => $value) {
-            $sql .=" $key = ' $value ',";
-        // echo $keys ." , ";
+            $sql .= " $key = '$value',";
+            // echo $keys ." , ";
         }
-        $sql=rtrim($sql,",");
+        $sql = rtrim($sql, ",");
         $sql .= " WHERE ID = $id";
-        $updexe=$this->db->query($sql);
-        // echo $sql;  
+        $updexe = $this->db->query($sql);
+
+        if ($updexe > 0) {
+            $Res['code'] = 1;
+            $Res['msg'] = "success";
+            $Res['data'] = 1;
+        } else {
+            $Res['code'] = 0;
+            $Res['msg'] = "try again";
+            $Res['data'] = 0;
+        }
+        return $Res;
     }
     function delete($tbl, $where)
     {

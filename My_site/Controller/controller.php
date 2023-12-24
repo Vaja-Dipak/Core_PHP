@@ -62,12 +62,13 @@ class Controller extends Model
                                         "type" => "error",
                                         "message" => "Problem in image uploading..!"
                                     );
-                                    $imagename = "---";
                                 }
                             }
                         }
+                        
 
-                        $data = array("username" => $_POST['username'],
+                        $data = array(
+                            "username" => $_POST['username'],
                             "email" => $_POST['email'],
                             "mobile" => $_POST['mobile'],
                             "birth" => $_POST['birth'],
@@ -78,14 +79,15 @@ class Controller extends Model
                             "city" => $_POST['city'],
                             "password" => $_POST['pass'],
                             "profile_pic" => $imagename,
-                            "status" => 0);
+                            "status" => 0
+                        );
 
-                        $response = $this->insert("user_data", $data);
+                        $res = $this->insert("user_data", $data);
 
-                        if($response['code']==1){
+                        if ($res['code'] == 1) {
                             echo "<script>alert('Registration Succesfully..')</script>";
                             header("location:login");
-                        }else{
+                        } else {
                             echo "<script>alert('Please try again later...')</script>";
                         }
                     }
@@ -122,6 +124,7 @@ class Controller extends Model
                     $countrys = $this->select('country');
                     $states = $this->select('state');
                     $citys = $this->select('city');
+
                     $updtsel = $this->select('user_data', array("id" => $_REQUEST['id']));
                     // echo "<pre>";
                     // print_r($updtsel['data']);
@@ -131,7 +134,45 @@ class Controller extends Model
                     include_once("Views/Admin/footer.php");
 
                     if (isset($_POST['submit'])) {
-                        $data = array("username" => $_POST['username'],
+
+                        $allowed_image_extension = array("png", "PNG", "jpg", "JPG", "jpeg", "JPEG", "webp");
+                        if ($_FILES['profile_pic']['error'] == 0) {
+                            $file_extension = pathinfo($_FILES["profile_pic"]["name"], PATHINFO_EXTENSION);
+                            if (!file_exists($_FILES['profile_pic']['tmp_name'])) {
+                                $response = array(
+                                    "type" => "error",
+                                    "message" => "Choose image file to upload."
+                                );
+                            } else if (!in_array($file_extension, $allowed_image_extension)) {
+                                $response = array(
+                                    "type" => "error",
+                                    "message" => "Upload valid images. Only allowed JPG, JPEG, PNG and webp Images."
+                                );
+                            } else if (($_FILES["profile_pic"]["size"] > 2000000)) {
+                                $response = array(
+                                    "type" => "error",
+                                    "message" => "Image size allowed smaller then 2MB"
+                                );
+                            } else {
+                                $target = "assets/uploads/" . basename($_FILES["profile_pic"]["name"]);
+                                if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target)) {
+                                    $response = array(
+                                        "type" => "success",
+                                        "message" => "Image uploaded successfully..",
+                                        "name" => $_FILES["profile_pic"]["name"]
+                                    );
+                                    $imagename = $_FILES["profile_pic"]["name"];
+                                } else {
+                                    $response = array(
+                                        "type" => "error",
+                                        "message" => "Problem in image uploading..!"
+                                    );
+                                }
+                            }
+                        }
+
+                        $data = array(
+                            "username" => $_POST['username'],
                             "email" => $_POST['email'],
                             "mobile" => $_POST['mobile'],
                             "birth" => $_POST['birth'],
@@ -140,12 +181,22 @@ class Controller extends Model
                             "country" => $_POST['country'],
                             "state" => $_POST['state'],
                             "city" => $_POST['city'],
-                            "password" => $_POST['password'], );
+                            "password" => $_POST['password'],
+                            "profile_pic" => $imagename,
+                        );
+
+                        // echo "<pre>";
+                        // print_r($data);
+                        // echo "</pre>";
 
                         $update = $this->update('user_data', $data, $_POST['id']);
 
-                        echo "<script>alert('Data Updated Succesfully..')</script>";
-                        header("location:dashboard");
+                        if ($update['code'] == 1) {
+                            echo "<script>alert('Data Updated Succesfully..')</script>";
+                            header("location:dashboard");
+                        } else {
+                            echo "<script>alert('Server error, please try again leter..')</script>";
+                        }
                     }
 
                     break;
