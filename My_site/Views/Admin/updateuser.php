@@ -18,7 +18,7 @@
                         <h3><STRong> UPDATE USER </STRong></h3>
                     </div>
                     <div class="card-body">
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" action="updateuserdata" enctype="multipart/form-data">
                             <table class="table">
                                 <input type="hidden" Name="id" value="<?php echo $updtsel['data'][0]->id; ?>">
                                 <tr>
@@ -119,10 +119,19 @@
                                 <tr>
                                     <td class="align-middle">Profile</td>
                                     <td>
-                                        <div class="text-center">
+                                        <div class="text-center d-flex align-items-center">
                                             <img src="<?php echo $this->assetsurl . "uploads/" . $updtsel['data'][0]->profile_pic; ?>"
-                                                class="w-25 h-25 rounded img-fluid img-thumbnail" alt="Profile">
-                                                <input class="prof" type="file" name="profile_pic" />
+                                                class="rounded float-left img-thumbnail" alt="Profile"
+                                                id="profpic" height="100px" width="100px">
+                                            <input class="px-2" type="file" name="profile_pic" id="prof" />
+                                            <script>
+                                                prof.onchange = evt => {
+                                                    const [file] = prof.files
+                                                    if (file) {
+                                                        profpic.src = URL.createObjectURL(file)
+                                                    }
+                                                }
+                                            </script>
                                         </div>
                                     </td>
                                 </tr>

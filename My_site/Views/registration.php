@@ -36,7 +36,7 @@
                 </div>
                 <div class="input-box">
                     <label>Upload Profile photo</label>
-                    <input class="prof" type="file" name="profile_pic" />
+                    <input class="prof" type="file" name="profile_pic" required />
                 </div>
             </div>
             <div class="gender-box">

@@ -1,12 +1,26 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Kolkata');
+
 require_once("Model/model.php");
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+
+
 class Controller extends Model
 {
-
     public $assetsurl = "http://localhost/My_site/assets/";
+    public $mail = "";
     function __construct()
     {
+        //Create an instance; passing `true` enables exceptions
+        $this->mail = new PHPMailer(true);
         ob_start();
         parent::__construct();
         if (isset($_SERVER['PATH_INFO'])) {
@@ -49,14 +63,15 @@ class Controller extends Model
                                     "message" => "Image size allowed smaller then 2MB"
                                 );
                             } else {
-                                $target = "assets/uploads/" . basename($_FILES["profile_pic"]["name"]);
+                                $profilename = $_POST['username'] . "_profile." . $file_extension;
+                                $target = "assets/uploads/" . $profilename;
                                 if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target)) {
                                     $response = array(
                                         "type" => "success",
                                         "message" => "Image uploaded successfully..",
-                                        "name" => $_FILES["profile_pic"]["name"]
+                                        "name" => $profilename
                                     );
-                                    $imagename = $_FILES["profile_pic"]["name"];
+                                    $imagename = $profilename;
                                 } else {
                                     $response = array(
                                         "type" => "error",
@@ -64,8 +79,10 @@ class Controller extends Model
                                     );
                                 }
                             }
+                        } else {
+                            $imagename = "Empty";
                         }
-                        
+
 
                         $data = array(
                             "username" => $_POST['username'],
@@ -115,11 +132,16 @@ class Controller extends Model
                     }
                     break;
                 case '/dashboard':
+                    if (!$_SESSION) {
+                        header("location:sign-up");
+                    }
                     $users = $this->select('user_data');
                     include_once("Views/Admin/header.php");
                     include_once("Views/Admin/main_page.php");
                     include_once("Views/Admin/footer.php");
                     break;
+                    break;
+                case '/updateuserdata':
                 case '/updateuser':
                     $countrys = $this->select('country');
                     $states = $this->select('state');
@@ -154,14 +176,15 @@ class Controller extends Model
                                     "message" => "Image size allowed smaller then 2MB"
                                 );
                             } else {
-                                $target = "assets/uploads/" . basename($_FILES["profile_pic"]["name"]);
+                                $profilename = $_POST['username'] . "_profile." . $file_extension;
+                                $target = "assets/uploads/" . $profilename;
                                 if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target)) {
                                     $response = array(
                                         "type" => "success",
                                         "message" => "Image uploaded successfully..",
-                                        "name" => $_FILES["profile_pic"]["name"]
+                                        "name" => $profilename
                                     );
-                                    $imagename = $_FILES["profile_pic"]["name"];
+                                    $imagename = $profilename;
                                 } else {
                                     $response = array(
                                         "type" => "error",
@@ -169,6 +192,8 @@ class Controller extends Model
                                     );
                                 }
                             }
+                        } else {
+                            $imagename = $updtsel['data'][0]->profile_pic;
                         }
 
                         $data = array(
@@ -183,10 +208,12 @@ class Controller extends Model
                             "city" => $_POST['city'],
                             "password" => $_POST['password'],
                             "profile_pic" => $imagename,
+                            "last_update" => date('d/m/y  h:i A'),
                         );
 
                         // echo "<pre>";
                         // print_r($data);
+                        // print_r($_FILES);
                         // echo "</pre>";
 
                         $update = $this->update('user_data', $data, $_POST['id']);
@@ -246,12 +273,77 @@ class Controller extends Model
                     include_once("Views/Admin/forms.php");
                     include_once("Views/Admin/footer.php");
                     break;
+                case '/sign-up':
+                    include_once("Views/sign-up.php");
+                    break;
+                case '/sendotp':
+                    include_once("Views/Admin/send-otp.php");
+                    if(isset($_POST['sendmail'])){
+                        $email = $_REQUEST['email'];
+                        $OTP = random_int(100000, 999999);
+                        $msg = "Your Forgot password OTP is : $OTP  &ensp; OR &ensp; ";
+                        $msg .= "<a href='http://localhost/My_site/forgotpass?email='$email>Click here to change your Password</a>";
+                        // echo "<pre>";
+                        // print_r($email);
+                        // print_r($OTP);
+                        // print_r($msg);
+                        // echo "</pre>";
+                        $this->sentmail($email, $msg);
+                        header("location:forgotpass");
+                    }
+                    break;
+                case '/forgotpass':
+                    include_once("Views/Admin/forgot-password.php");
+                    // echo "<pre>";
+                    // print_r( $this->mail);
+                    // echo "</pre>";
+                    break;
+                case '/verify':
+                    include_once("Views/Admin/forgot-password.php");
+                    break;
 
             }
         } else {
             header("location:home");
         }
         ob_flush();
+    }
+    function sentmail($email, $msg)
+    {
+        try {
+            //Server settings
+            $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $this->mail->isSMTP();                                            //Send using SMTP
+            $this->mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $this->mail->SMTPAuth = true;                                   //Enable SMTP authentication
+            $this->mail->Username = 'vajadipak2110@gmail.com';                     //SMTP username
+            $this->mail->Password = 'yaetotlvuxiqevjt';                               //SMTP password
+            $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $this->mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $this->mail->setFrom('vajadipak2110@gmail.com', 'Vaja Dipak');
+            $this->mail->addAddress($email, 'Joe User');     //Add a recipient
+            // $this->mail->addAddress('ellen@example.com');               //Name is optional
+            $this->mail->addReplyTo('vajadipak2110@gmail.com', 'Information');
+            // $this->mail->addCC('cc@example.com');
+            // $this->mail->addBCC('bcc@example.com');
+
+            //Attachments
+            // $this->mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $this->mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+            //Content
+            $this->mail->isHTML(true);                                  //Set email format to HTML
+            $this->mail->Subject = 'Forgot password OTP';
+            $this->mail->Body = $msg;
+            $this->mail->AltBody = 'Your Forgot password OTP is : ';
+
+            $this->mail->send();
+            return 'Message has been sent';
+        } catch (Exception $e) {
+            return "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
+        }
     }
 }
 

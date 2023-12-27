@@ -9,10 +9,11 @@
   <title>Login</title>
 </head>
 <style>
-  .container{
+  .container {
     max-width: 500px;
   }
-  .reglink{
+
+  .reglink {
     text-align: center;
     margin: 20px 0;
   }
@@ -28,6 +29,8 @@
       <div class="input-box">
         <input type="password" name="pass" placeholder="Password" required />
       </div>
+      <div class="reglink">
+        <a href="sendotp">Forgot Password?</a>
       </div>
       <div class="input-box">
         <div class="btn">
@@ -35,7 +38,7 @@
         </div>
       </div>
       <div class="reglink">
-        <p>Not a member? <a href="#!">Register</a></p>
+        <p>Not a member? <a href="registration">Register</a></p>
       </div>
     </form>
   </section>
