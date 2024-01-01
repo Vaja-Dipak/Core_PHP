@@ -31,10 +31,19 @@ class Controller extends Model
                     include_once("Views/home.php");
                     include_once("Views/footer.php");
                     break;
+                case '/getcountrys':
+                    $data = $this->select('country');
+                    echo json_encode($data['data']);
+                    break;
+                case '/getstatesbycountry':
+                    $data = $this->select('state',array("fk_country_id"=>$_REQUEST["countryid"]));
+                    echo json_encode($data['data']);
+                    break;
+                case '/getcitysbystate':
+                    $data = $this->select('city',array("fk_state_id"=>$_REQUEST["stateid"]));
+                    echo json_encode($data['data']);
+                    break;
                 case '/registration':
-                    $countrys = $this->select('country');
-                    $states = $this->select('state');
-                    $citys = $this->select('city');
                     include_once("Views/registration.php");
                     if (isset($_POST["submit"])) {
                         // echo "<pre>";
@@ -140,8 +149,6 @@ class Controller extends Model
                     include_once("Views/Admin/main_page.php");
                     include_once("Views/Admin/footer.php");
                     break;
-                    break;
-                case '/updateuserdata':
                 case '/updateuser':
                     $countrys = $this->select('country');
                     $states = $this->select('state');
@@ -216,10 +223,10 @@ class Controller extends Model
                         // print_r($_FILES);
                         // echo "</pre>";
 
-                        $update = $this->update('user_data', $data, $_POST['id']);
+                        $update = $this->update('user_data', $data, array('id' => $_POST['id']));
 
                         if ($update['code'] == 1) {
-                            echo "<script>alert('Data Updated Succesfully..')</script>";
+                            echo "<script>alert('Data Updated Succesfully..');</script>";
                             header("location:dashboard");
                         } else {
                             echo "<script>alert('Server error, please try again leter..')</script>";
@@ -278,25 +285,41 @@ class Controller extends Model
                     break;
                 case '/sendotp':
                     include_once("Views/Admin/send-otp.php");
-                    if(isset($_POST['sendmail'])){
-                        $email = $_REQUEST['email'];
-                        $OTP = random_int(100000, 999999);
-                        $msg = "Your Forgot password OTP is : $OTP  &ensp; OR &ensp; ";
-                        $msg .= "<a href='http://localhost/My_site/forgotpass?email='$email>Click here to change your Password</a>";
-                        // echo "<pre>";
-                        // print_r($email);
-                        // print_r($OTP);
-                        // print_r($msg);
-                        // echo "</pre>";
-                        $this->sentmail($email, $msg);
-                        header("location:forgotpass");
+                    if (isset($_POST['sendmail'])) {
+                        $mailexist = $this->select('user_data', array('email' => $_POST['email']));
+                        if ($mailexist['code'] == 1) {
+                            $emailId = $_POST['email'];
+                            $OTP = random_int(100000, 999999);
+                            $this->update('user_data', array("otp" => $OTP), array("email" => $emailId));
+                            $msg = "Your Forgot password OTP is : $OTP  &ensp; OR &ensp; ";
+
+                            $msg .= "<a href='http://localhost/My_site/forgotpass?email=$emailId'>Click here to change your Password</a>";
+                            // echo "<pre>";
+                            // print_r($OTP);
+                            // echo "</pre>";
+
+                            $this->sentmail($emailId, $msg);
+                            header("location:forgotpass?email=$emailId");
+                        } else {
+                            echo '<script>alert("This Email is Not exist..")</script>';
+                        }
                     }
                     break;
                 case '/forgotpass':
+
                     include_once("Views/Admin/forgot-password.php");
+                    $email = $_REQUEST['email'];
+                    $mainotp = $this->select('user_data', array("email" => $email));
                     // echo "<pre>";
-                    // print_r( $this->mail);
+                    print_r($mainotp['data'][0]->otp);
                     // echo "</pre>";
+                    if (isset($_REQUEST['resetpass'])) {
+                        if ($mainotp['data'][0]->otp == $_REQUEST['inputotp']) {
+                            header("location:login");
+                        } else {
+                            echo '<script>alert("Please Enter valid OTP..!")</script>';
+                        }
+                    }
                     break;
                 case '/verify':
                     include_once("Views/Admin/forgot-password.php");
@@ -312,7 +335,7 @@ class Controller extends Model
     {
         try {
             //Server settings
-            $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            // $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $this->mail->isSMTP();                                            //Send using SMTP
             $this->mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $this->mail->SMTPAuth = true;                                   //Enable SMTP authentication

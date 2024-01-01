@@ -18,7 +18,7 @@
                         <h3><STRong> UPDATE USER </STRong></h3>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="updateuserdata" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             <table class="table">
                                 <input type="hidden" Name="id" value="<?php echo $updtsel['data'][0]->id; ?>">
                                 <tr>

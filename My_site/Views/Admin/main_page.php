@@ -122,7 +122,6 @@
                         <th>Birth</th>
                         <th>Gender</th>
                         <th>Address</th>
-                        <th>Profile</th>
                         <th>Active</th>
                         <th>Action</th>
                       </tr>
@@ -151,9 +150,6 @@
                         </td>
                         <td>
                           <?php echo $u->address . "," . $u->city . ",<br>" . $u->state . "," . $u->country; ?>
-                        </td>
-                        <td>
-                          <?php echo $u->profile_pic; ?>
                         </td>
                         <td class="text-center">
                           <?php echo $u->status; ?>

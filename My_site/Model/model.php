@@ -73,7 +73,7 @@ class Model
         if ($where != "") {
             $sql .= " WHERE ";
             foreach ($where as $key => $value) {
-                $sql .= " $key = $value AND";
+                $sql .= " $key = '$value' AND";
             }
             $sql = rtrim($sql, "AND");
         }
@@ -92,7 +92,7 @@ class Model
         }
         return $Res;
     }
-    function update($tbl, $data, $id)
+    function update($tbl, $data, $where="")
     {
         $sql = "UPDATE $tbl SET ";
         // $keys=implode(array_keys($data));
@@ -101,9 +101,14 @@ class Model
             // echo $keys ." , ";
         }
         $sql = rtrim($sql, ",");
-        $sql .= " WHERE ID = $id";
+        
+        $sql .= " WHERE ";
+        foreach ($where as $key => $value) {
+            $sql .= " $key = '$value' AND";
+        }
+        $sql = rtrim($sql, "AND");
+        
         $updexe = $this->db->query($sql);
-
         if ($updexe > 0) {
             $Res['code'] = 1;
             $Res['msg'] = "success";

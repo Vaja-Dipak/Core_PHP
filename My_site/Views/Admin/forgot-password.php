@@ -14,12 +14,6 @@
         text-align: center;
     }
 
-    .note {
-        padding: 35px 25px 0 25px;
-        text-align: center;
-        font-size: 17px;
-    }
-
     .fbtn input {
         height: 45px;
         width: 100%;
@@ -36,36 +30,29 @@
         background: rgb(88, 56, 250);
     }
 
-    .reglink {
-        text-align: center;
-        font-size: 16px;
-        margin: 20px 0;
-    }
-
-    .row {
-        display: flex;
-    }
-
-    .col {
-        width: 50%;
-    }
 </style>
+<script>
+    var check = function () {
+        if (document.getElementById('password').value != document.getElementById('repassword').value) {
+            alert("Please Enter Same Password.");
+            document.getElementById('password').value="";
+            document.getElementById('repassword').value="";
+        }
+    }
+</script>
 
 <body>
     <section class="container">
-        <header><b>Forgot Password</b></header>
-        <p class="note">
-            Enter your email address and we'll send you an email with instructions to reset your password.
-        </p>
+        <header><b>Reset Password</b></header>
         <form method="post" class="form">
             <div class="input-box">
-                <input type="text" name="otp" placeholder="Enter OTP" required />
-                <input type="text" name="password" placeholder="Enter New Password" required />
-                <input type="text" name="repassword" placeholder="Re Enter password" required />
+                <input type="text" name="inputotp" placeholder="Enter OTP" required />
+                <input type="text" name="password" id="password" placeholder="Enter New Password" required/>
+                <input type="text" onblur="check()" name="repassword" id="repassword" placeholder="Re Enter password" required/>
             </div>
             <div class="input-box">
                 <div class="fbtn">
-                    <input type="submit" name="login" value="Reset Password">
+                    <input type="submit" name="resetpass" value="Reset Password">
                 </div>
             </div>
         </form>
