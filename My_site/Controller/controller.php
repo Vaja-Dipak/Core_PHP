@@ -32,62 +32,29 @@ class Controller extends Model
                     include_once("Views/footer.php");
                     break;
                 case '/getcountrys':
-                    $data = $this->select('country');
+                    $data = $this->select('countries');
                     echo json_encode($data['data']);
                     break;
                 case '/getstatesbycountry':
-                    $data = $this->select('state',array("fk_country_id"=>$_REQUEST["countryid"]));
+                    $data = $this->select('states', array("country_id" => $_REQUEST["countryid"]));
                     echo json_encode($data['data']);
                     break;
                 case '/getcitysbystate':
-                    $data = $this->select('city',array("fk_state_id"=>$_REQUEST["stateid"]));
+                    $data = $this->select('cities', array("state_id" => $_REQUEST["stateid"]));
                     echo json_encode($data['data']);
                     break;
                 case '/registration':
                     include_once("Views/registration.php");
                     if (isset($_POST["submit"])) {
-                        // echo "<pre>";
-                        // print_r($_REQUEST);
+                        echo "<pre>";
+                        print_r($_REQUEST);
                         // print_r($_FILES['profile_pic']);
                         // print_r(pathinfo($_FILES['profile_pic']["name"]));
                         // print_r($_FILES['profile_pic']['error']);
-                        // echo "</pre>";
+                        echo "</pre>";
 
-                        $allowed_image_extension = array("png", "PNG", "jpg", "JPG", "jpeg", "JPEG", "webp");
                         if ($_FILES['profile_pic']['error'] == 0) {
-                            $file_extension = pathinfo($_FILES["profile_pic"]["name"], PATHINFO_EXTENSION);
-                            if (!file_exists($_FILES['profile_pic']['tmp_name'])) {
-                                $response = array(
-                                    "type" => "error",
-                                    "message" => "Choose image file to upload."
-                                );
-                            } else if (!in_array($file_extension, $allowed_image_extension)) {
-                                $response = array(
-                                    "type" => "error",
-                                    "message" => "Upload valid images. Only allowed JPG, JPEG, PNG and webp Images."
-                                );
-                            } else if (($_FILES["profile_pic"]["size"] > 2000000)) {
-                                $response = array(
-                                    "type" => "error",
-                                    "message" => "Image size allowed smaller then 2MB"
-                                );
-                            } else {
-                                $profilename = $_POST['username'] . "_profile." . $file_extension;
-                                $target = "assets/uploads/" . $profilename;
-                                if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target)) {
-                                    $response = array(
-                                        "type" => "success",
-                                        "message" => "Image uploaded successfully..",
-                                        "name" => $profilename
-                                    );
-                                    $imagename = $profilename;
-                                } else {
-                                    $response = array(
-                                        "type" => "error",
-                                        "message" => "Problem in image uploading..!"
-                                    );
-                                }
-                            }
+                            $this->profileupld($_FILES);
                         } else {
                             $imagename = "Empty";
                         }
@@ -121,7 +88,7 @@ class Controller extends Model
                 case '/login':
                     include_once("Views/login.php");
                     if (isset($_POST["login"])) {
-                        $res = $this->login($_POST['username'], $_POST['pass']);
+                        $res = $this->login($_POST['username'], $_POST['password']);
                         if ($res['code'] == 1) {
                             // echo"<pre>";
                             // print_r(array_column($res,"password"));
@@ -163,42 +130,8 @@ class Controller extends Model
                     include_once("Views/Admin/footer.php");
 
                     if (isset($_POST['submit'])) {
-
-                        $allowed_image_extension = array("png", "PNG", "jpg", "JPG", "jpeg", "JPEG", "webp");
                         if ($_FILES['profile_pic']['error'] == 0) {
-                            $file_extension = pathinfo($_FILES["profile_pic"]["name"], PATHINFO_EXTENSION);
-                            if (!file_exists($_FILES['profile_pic']['tmp_name'])) {
-                                $response = array(
-                                    "type" => "error",
-                                    "message" => "Choose image file to upload."
-                                );
-                            } else if (!in_array($file_extension, $allowed_image_extension)) {
-                                $response = array(
-                                    "type" => "error",
-                                    "message" => "Upload valid images. Only allowed JPG, JPEG, PNG and webp Images."
-                                );
-                            } else if (($_FILES["profile_pic"]["size"] > 2000000)) {
-                                $response = array(
-                                    "type" => "error",
-                                    "message" => "Image size allowed smaller then 2MB"
-                                );
-                            } else {
-                                $profilename = $_POST['username'] . "_profile." . $file_extension;
-                                $target = "assets/uploads/" . $profilename;
-                                if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target)) {
-                                    $response = array(
-                                        "type" => "success",
-                                        "message" => "Image uploaded successfully..",
-                                        "name" => $profilename
-                                    );
-                                    $imagename = $profilename;
-                                } else {
-                                    $response = array(
-                                        "type" => "error",
-                                        "message" => "Problem in image uploading..!"
-                                    );
-                                }
-                            }
+                            $this->profileupld($_FILES);
                         } else {
                             $imagename = $updtsel['data'][0]->profile_pic;
                         }
@@ -331,6 +264,44 @@ class Controller extends Model
         }
         ob_flush();
     }
+    function profileupld($file)
+    {
+        $allowed_image_extension = array("png", "PNG", "jpg", "JPG", "jpeg", "JPEG", "webp");
+        $file_extension = pathinfo($_FILES["profile_pic"]["name"], PATHINFO_EXTENSION);
+        if (!file_exists($_FILES['profile_pic']['tmp_name'])) {
+            $response = array(
+                "type" => "error",
+                "message" => "Choose image file to upload."
+            );
+        } else if (!in_array($file_extension, $allowed_image_extension)) {
+            $response = array(
+                "type" => "error",
+                "message" => "Upload valid images. Only allowed JPG, JPEG, PNG and webp Images."
+            );
+        } else if (($_FILES["profile_pic"]["size"] > 2000000)) {
+            $response = array(
+                "type" => "error",
+                "message" => "Image size allowed smaller then 2MB"
+            );
+        } else {
+            $profilename = $_POST['username'] . "_profile." . $file_extension;
+            $target = "assets/uploads/" . $profilename;
+            if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target)) {
+                $response = array(
+                    "type" => "success",
+                    "message" => "Image uploaded successfully..",
+                    "name" => $profilename
+                );
+                $imagename = $profilename;
+            } else {
+                $response = array(
+                    "type" => "error",
+                    "message" => "Problem in image uploading..!"
+                );
+            }
+        }
+
+    }
     function sentmail($email, $msg)
     {
         try {
@@ -368,6 +339,28 @@ class Controller extends Model
             return "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
         }
     }
+
+    // function sms(){
+
+    //     // Update the path below to your autoload.php,
+    //     // see https://getcomposer.org/doc/01-basic-usage.md
+    //     require_once '/path/to/vendor/autoload.php';
+    //     use Twilio\Rest\Client;
+
+    //     $sid    = "AC84314e198711729d36ca003c37436153";
+    //     $token  = "[AuthToken]";
+    //     $twilio = new Client($sid, $token);
+
+    //     $message = $twilio->messages
+    //       ->create("+917202881695", // to
+    //         array(
+    //           "from" => "+18576265418",
+    //           "body" => Your OTP is : 1234
+    //         )
+    //       );
+
+    // print($message->sid);
+    // }
 }
 
 $controllerobj = new Controller;

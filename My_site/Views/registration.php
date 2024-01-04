@@ -15,7 +15,7 @@
 <body>
     <section class="container">
         <header><b>Registration Form</b></header>
-        <form method="post" class="form" id="regform" enctype="multipart/form-data">
+        <form method="post" class="form" id="regform" onsubmit="savedata()" enctype="multipart/form-data">
             <div class="column">
                 <div class="input-box">
                     <label>Username</label>
@@ -80,8 +80,8 @@
                     </div>
                 </div>
                 <div class="column">
-                    <input type="password" id="pass" name="pass" placeholder="Set your Password" />
-                    <input type="password" id="repass" name="repass" placeholder="Confirm Password" onblur="check()"/>
+                    <input type="password" id="password" name="password" placeholder="Set your Password" />
+                    <input type="password" id="repass" name="repass" placeholder="Confirm Password" onblur="check()" />
                 </div>
             </div>
             <div class="input-box">
@@ -89,8 +89,9 @@
                     <input type="submit" name="submit" value="Submit">
                 </div>
             </div>
-            <p style="text-align:center; margin-top:20px">Have already an account.?  
-            <a href="login" class="fw-bold text-body"><u>Login here</u></a></p>
+            <p style="text-align:center; margin-top:20px">Have already an account.?
+                <a href="login" class="fw-bold text-body"><u>Login here</u></a>
+            </p>
         </form>
         <script>
             var check = function () {
@@ -110,7 +111,6 @@
             }
 
             $().ready(function () {
-                $("#regform").validate();
                 fetchcountries()
             })
             function fetchcountries() {

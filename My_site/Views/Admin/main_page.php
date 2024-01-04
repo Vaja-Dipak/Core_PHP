@@ -60,54 +60,13 @@
     </div>
     <!-- //statistics data -->
 
-    <!-- charts -->
-    <div class="chart">
-      <div class="row">
-        <div class="col-lg-6 pr-lg-2 chart-grid">
-          <div class="card text-center card_border">
-            <div class="card-header chart-grid__header">
-              Bar Chart
-            </div>
-            <div class="card-body">
-              <!-- bar chart -->
-              <div id="container">
-                <canvas id="barchart"></canvas>
-              </div>
-              <!-- //bar chart -->
-            </div>
-            <div class="card-footer text-muted chart-grid__footer">
-              Updated 2 hours ago
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 pl-lg-2 chart-grid">
-          <div class="card text-center card_border">
-            <div class="card-header chart-grid__header">
-              Line Chart
-            </div>
-            <div class="card-body">
-              <!-- line chart -->
-              <div id="container">
-                <canvas id="linechart"></canvas>
-              </div>
-              <!-- //line chart -->
-            </div>
-            <div class="card-footer text-muted chart-grid__footer">
-              Updated just now
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //charts -->
-
     <!-- AllUsers -->
     <div class="data-tables">
       <div class="row">
         <div class="col-lg-12 chart-grid mb-4">
-          <div class="card card_border p-4">
+          <div class="card card_border p-3">
             <div class="card-header chart-grid__header pl-0 pt-0">
-              Chatting
+              All Users
             </div>
             <div class="messaging">
               <div class="inbox_msg">
@@ -250,6 +209,47 @@
       </div>
     </div>
     <!-- //AllUsers -->
+
+    <!-- charts -->
+    <div class="chart">
+      <div class="row">
+        <div class="col-lg-6 pr-lg-2 chart-grid">
+          <div class="card text-center card_border">
+            <div class="card-header chart-grid__header">
+              Bar Chart
+            </div>
+            <div class="card-body">
+              <!-- bar chart -->
+              <div id="container">
+                <canvas id="barchart"></canvas>
+              </div>
+              <!-- //bar chart -->
+            </div>
+            <div class="card-footer text-muted chart-grid__footer">
+              Updated 2 hours ago
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 pl-lg-2 chart-grid">
+          <div class="card text-center card_border">
+            <div class="card-header chart-grid__header">
+              Line Chart
+            </div>
+            <div class="card-body">
+              <!-- line chart -->
+              <div id="container">
+                <canvas id="linechart"></canvas>
+              </div>
+              <!-- //line chart -->
+            </div>
+            <div class="card-footer text-muted chart-grid__footer">
+              Updated just now
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //charts -->
 
     <!-- chatting -->
     <div class="data-tables">
