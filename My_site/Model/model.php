@@ -27,6 +27,7 @@ class Model
         $val = implode("','", $dt);
 
         // echo"<pre>";
+        // print_r($dt);
         // print_r($colm)."<br>";
         // print_r($val);
         // print_r($this->db);

@@ -15,7 +15,7 @@
 <body>
     <section class="container">
         <header><b>Registration Form</b></header>
-        <form method="post" class="form" id="regform" onsubmit="savedata()" enctype="multipart/form-data">
+        <form method="post" class="form" id="form" onsubmit="savedata()" enctype="multipart/form-data">
             <div class="column">
                 <div class="input-box">
                     <label>Username</label>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="input-box">
                     <label>Upload Profile photo</label>
-                    <input class="prof" type="file" name="profile_pic" required />
+                    <input class="prof" type="file" name="profile_pic" />
                 </div>
             </div>
             <div class="gender-box">
@@ -56,6 +56,27 @@
                     <div class="gender">
                         <input type="radio" id="check-other" value="prefer not to say" name="gender" />
                         <label for="check-other">prefer not to say</label>
+                    </div>
+                </div>
+            </div>
+            <div class="gender-box">
+                <h3>Hobby</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input type="checkbox" name="chk[]" id="Cricekt" value="Cricekt">
+                        <label for="Cricekt">Cricekt</label>
+                    </div>
+                    <div class="gender">
+                        <input type="checkbox" name="chk[]" id="Music" value="Music">
+                        <label for="Music">Music</label>
+                    </div>
+                    <div class="gender">
+                        <input type="checkbox" name="chk[]" id="Reading" value="Reading">
+                        <label for="Reading">Reading</label>
+                    </div>
+                    <div class="gender">
+                        <input type="checkbox" name="chk[]" id="Travelling" value="Travelling">
+                        <label for="Travelling">Travelling</label>
                     </div>
                 </div>
             </div>
@@ -145,6 +166,39 @@
                     $("#city").html(optioncity);
                 })
             }
+            function savedata() {
+                event.preventDefault()
+
+                var result = {}
+                $.each($('form').serializeArray(), function () {
+                    result[this.name] = this.value;
+                });
+
+                delete (result['repass']);;
+
+                let hobby = ""
+                $('input[name="chk[]"]:checked').each(function () {
+                    hobby += this.value + ","
+                });
+                hobby = hobby.substring(0, hobby.length - 1); // Remove the last character
+
+                delete (result['chk[]']);
+                result["hobby"] = hobby;
+                // console.log(hobby);
+                console.log(result);
+
+                fetch('http://localhost/My_site/ress', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify(result)
+                }).then((res) => res.json()).then((result) => {
+                    console.log(result);
+                })
+            }
+
         </script>
     </section>
 </body>
