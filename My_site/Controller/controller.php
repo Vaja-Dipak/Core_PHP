@@ -54,7 +54,7 @@ class Controller extends Model
 
                 // ---------------API section end---------------
 
-                case '/registration':
+                case '/registratimmon':
                     include_once("Views/registration.php");
                     // if (isset($_POST["submit"])) {
                     //     echo "<pre>";
@@ -350,28 +350,6 @@ class Controller extends Model
             return "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
         }
     }
-
-    // function sms(){
-
-    //     // Update the path below to your autoload.php,
-    //     // see https://getcomposer.org/doc/01-basic-usage.md
-    //     require_once '/path/to/vendor/autoload.php';
-    //     use Twilio\Rest\Client;
-
-    //     $sid    = "AC84314e198711729d36ca003c37436153";
-    //     $token  = "[AuthToken]";
-    //     $twilio = new Client($sid, $token);
-
-    //     $message = $twilio->messages
-    //       ->create("+917202881695", // to
-    //         array(
-    //           "from" => "+18576265418",
-    //           "body" => Your OTP is : 1234
-    //         )
-    //       );
-
-    // print($message->sid);
-    // }
 }
 
 $controllerobj = new Controller;
