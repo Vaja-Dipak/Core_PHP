@@ -165,8 +165,8 @@
                     });
                     $("#city").html(optioncity);
                 })
-            }
-            function savedata() {
+            }savedata
+            function () {
                 event.preventDefault()
 
                 var result = {}
@@ -195,9 +195,11 @@
                     method: "POST",
                     body: JSON.stringify(result)
                 }).then((res) => res.json()).then((result) => {
-                    console.log(result);
-                })
-            }
+                    // console.log(result);
+                    alert(result.code);
+
+        })
+        }
 
         </script>
     </section>

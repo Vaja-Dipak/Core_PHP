@@ -12,7 +12,7 @@
         </nav>
         <!-- chatting -->
         <div class="data-tables">
-            <div class="col-md-6 my-0 mx-auto">
+            <div class="col-md-7 my-0 mx-auto">
                 <div class="card">
                     <div class="card-header text-center text-primary">
                         <h3><STRong> UPDATE USER </STRong></h3>

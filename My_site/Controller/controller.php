@@ -55,7 +55,7 @@ class Controller extends Model
 
                 // ---------------API section end---------------
 
-                case '/registratimmon':
+                case '/registration':
                     include_once("Views/registration.php");
                     // if (isset($_POST["submit"])) {
                     //     echo "<pre>";
@@ -129,9 +129,9 @@ class Controller extends Model
                     include_once("Views/Admin/footer.php");
                     break;
                 case '/updateuser':
-                    $countrys = $this->select('country');
-                    $states = $this->select('state');
-                    $citys = $this->select('city');
+                    $countrys = $this->select('countries');
+                    $states = $this->select('states');
+                    $citys = $this->select('cities');
 
                     $updtsel = $this->select('user_data', array("id" => $_REQUEST['id']));
                     // echo "<pre>";

@@ -31,15 +31,6 @@
     }
 
 </style>
-<script>
-    var check = function () {
-        if (document.getElementById('password').value != document.getElementById('repassword').value) {
-            alert("Please Enter Same Password.");
-            document.getElementById('password').value="";
-            document.getElementById('repassword').value="";
-        }
-    }
-</script>
 
 <body>
     <section class="container">
@@ -57,6 +48,15 @@
             </div>
         </form>
     </section>
+    <script>
+    var check = function () {
+        if (document.getElementById('password').value != document.getElementById('repassword').value) {
+            alert("Please Enter Same Password.");
+            document.getElementById('password').value="";
+            document.getElementById('repassword').value="";
+        }
+    }
+</script>
 </body>
 
 </html>
