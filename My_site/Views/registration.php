@@ -165,8 +165,8 @@
                     });
                     $("#city").html(optioncity);
                 })
-            }savedata
-            function () {
+            }
+            function savedata() {
                 event.preventDefault()
 
                 var result = {}
@@ -198,8 +198,8 @@
                     // console.log(result);
                     alert(result.code);
 
-        })
-        }
+                })
+            }
 
         </script>
     </section>

@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 date_default_timezone_set('Asia/Kolkata');
@@ -48,7 +47,7 @@ class Controller extends Model
                     echo json_encode($data['data']);
                     break;
                 case '/ress':
-                    $formdata =json_decode(file_get_contents('php://input'),true);
+                    $formdata = json_decode(file_get_contents('php://input'), true);
                     $data = $this->insert("user_data", $formdata);
                     echo json_encode($data);
                     break;
@@ -57,45 +56,7 @@ class Controller extends Model
 
                 case '/registration':
                     include_once("Views/registration.php");
-                    // if (isset($_POST["submit"])) {
-                    //     echo "<pre>";
-                    //     print_r($_REQUEST);
-                    //     // print_r($_FILES['profile_pic']);
-                    //     // print_r(pathinfo($_FILES['profile_pic']["name"]));
-                    //     // print_r($_FILES['profile_pic']['error']);
-                    //     echo "</pre>";
-
-                    //     if ($_FILES['profile_pic']['error'] == 0) {
-                    //         $this->profileupld($_FILES);
-                    //     } else {
-                    //         $imagename = "Empty";
-                    //     }
-
-
-                    //     $data = array(
-                    //         "username" => $_POST['username'],
-                    //         "email" => $_POST['email'],
-                    //         "mobile" => $_POST['mobile'],
-                    //         "birth" => $_POST['birth'],
-                    //         "gender" => $_POST['gender'],
-                    //         "address" => $_POST['address'],
-                    //         "country" => $_POST['country'],
-                    //         "state" => $_POST['state'],
-                    //         "city" => $_POST['city'],
-                    //         "password" => $_POST['pass'],
-                    //         "profile_pic" => $imagename,
-                    //         "status" => 0
-                    //     );
-
-                    //     $res = $this->insert("user_data", $data);
-
-                    //     if ($res['code'] == 1) {
-                    //         echo "<script>alert('Registration Succesfully..')</script>";
-                    //         header("location:login");
-                    //     } else {
-                    //         echo "<script>alert('Please try again later...')</script>";
-                    //     }
-                    // }
+                 
                     break;
                 case '/login':
                     include_once("Views/login.php");
