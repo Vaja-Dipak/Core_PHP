@@ -24,12 +24,12 @@
 <body>
   <section class="container">
     <header><b>Login</b></header>
-    <form method="post" name="login" id="login" class="form">
+    <form method="post" name="login" id="loginform" onsubmit="lgn()" class="form">
       <div class="input-box">
-        <input type="text" name="username" id="username" placeholder="Username  or  Email  or  Mobile" required />
+        <input type="text" name="username" id="username" placeholder="Username  or  Email  or  Mobile" />
       </div>
       <div class="input-box">
-        <input type="password" name="password" id="password" placeholder="Password" required />
+        <input type="password" name="password" id="password" placeholder="Password" />
       </div>
       <div class="reglink">
         <a href="sendotp">Forgot Password?</a>
@@ -44,6 +44,34 @@
       </div>
     </form>
   </section>
+  <script>
+    function lgn() {
+      event.preventDefault()
+
+      var data = {}
+      $.each($(document.getElementById('loginform')).serializeArray(), function () {
+        data[this.name] = this.value;
+      })
+
+      // console.log(username,password);
+
+      fetch("http://localhost/My_site/lgn", {
+        headers: { 'Accept': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify({ data })
+      }).then((res) => res.json()).then((result) => {
+        console.log(result);
+      
+      if (result['data'].role_id == 1) {
+        window.location.replace("location:dashboard");
+      } else {
+        window.location.replace("location:home");
+      }
+      
+    })
+
+    }
+  </script>
 </body>
 
 </html>

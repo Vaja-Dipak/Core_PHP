@@ -158,7 +158,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				data-aos-duration="1500">
 					<!-- map -->
 					<div class="col-lg-6 map">
-						<iframe src="<?php echo https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423286.27404345275!2d-118.69191921441556!3d34.02016130939095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos+Angeles%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1522474296007"
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423286.27404345275!2d-118.69191921441556!3d34.02016130939095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos+Angeles%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1522474296007"
 						    allowfullscreen></iframe>
 					</div>
 					<!-- //map -->
@@ -266,7 +266,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<!-- Js files -->
 	<!-- JavaScript -->
-	<script src="<?php echo js/jquery-2.2.3.min.js"></script>
+	<script src="<?php echo "js/jquery-2.2.3.min.js"?>"></script>
 	<!-- Default-JavaScript-File -->
 
 	<!-- animation js -->

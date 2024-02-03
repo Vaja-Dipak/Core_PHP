@@ -51,35 +51,27 @@ class Controller extends Model
                     $data = $this->insert("user_data", $formdata);
                     echo json_encode($data);
                     break;
+                case '/lgn':
+                    $data=json_decode(file_get_contents("php://input"),true);
+
+                    $res = $this->login($data['data']['username'], $data['data']['password']);
+                    echo json_encode($res);
+
+                    if ($res['code']==1) {
+                        $_SESSION['UserData'] = $res['data'];
+                    }
+
+                    break;
 
                 // ---------------API section end---------------
 
                 case '/registration':
                     include_once("Views/registration.php");
-                 
                     break;
                 case '/login':
                     include_once("Views/login.php");
-                    if (isset($_POST["login"])) {
-                        $res = $this->login($_POST['username'], $_POST['password']);
-                        if ($res['code'] == 1) {
-                            // echo"<pre>";
-                            // print_r(array_column($res,"password"));
-                            // print_r($res);
-                            // print_r($res['data']->role_id);
-                            // echo"</pre>";
-
-                            $_SESSION['UserData'] = $res['data'];
-                            if ($res['data']->role_id == 1) {
-                                header("location:dashboard");
-                            } else {
-                                header("location:home");
-                            }
-                        } else {
-                            echo "<script>alert('Please Enter Correct Username and Password...!')</script>";
-                        }
-                    }
                     break;
+
                 case '/dashboard':
                     if (!$_SESSION) {
                         header("location:sign-up");
