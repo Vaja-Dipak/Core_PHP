@@ -1,10 +1,10 @@
 <style>
-.razorpay-payment-button {
-    padding: 4px;
-    background-color: #5A9E6F;
-    color: #fff;
-    border: 0;
-}
+    .razorpay-payment-button {
+        padding: 4px;
+        background-color: #5A9E6F;
+        color: #fff;
+        border: 0;
+    }
 </style>
 <?php
 
@@ -91,19 +91,19 @@ $json = json_encode($data);
         data-prefill.name="<?php echo $data['prefill']['name'] ?>"
         data-prefill.email="<?php echo $data['prefill']['email'] ?>"
         data-prefill.contact="<?php echo $data['prefill']['contact'] ?>" data-notes.shopping_order_id="3456"
-        data-order_id="<?php echo $data['order_id'] ?>" <?php if ($displayCurrency !== 'INR') {?>
-        data-display_amount="<?php echo $data['display_amount'] ?>" <?php }?> <?php if ($displayCurrency !== 'INR') {?>
-        data-display_currency="<?php echo $data['display_currency'] ?>" <?php }?>>
-    </script>
+        data-order_id="<?php echo $data['order_id'] ?>" <?php if ($displayCurrency !== 'INR') { ?>
+            data-display_amount="<?php echo $data['display_amount'] ?>" <?php } ?> <?php if ($displayCurrency !== 'INR') { ?>
+            data-display_currency="<?php echo $data['display_currency'] ?>" <?php } ?>>
+        </script>
     <!-- Any extra fields to be submitted with the form but not sent to Razorpay -->
     <input type="hidden" name="shopping_order_id" value="3456">
 </form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
+    </script>
 <script>
-$(window).on('load', function() {
-    jQuery('.razorpay-payment-button').click();
-});
+    $(window).on('load', function () {
+        jQuery('.razorpay-payment-button').click();
+    });
 </script>

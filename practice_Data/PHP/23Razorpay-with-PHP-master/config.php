@@ -10,11 +10,3 @@ $displayCurrency = 'USD';
 error_reporting(0);
 ini_set('display_errors', 1);
 
-//Database connection details
-$host = "localhost";
-$username = "root";
-$password = "";
-$dbname = "razorpay";
-
-//Db connection
-$con = mysqli_connect($host, $username, $password, $dbname);

@@ -35,17 +35,6 @@ if (empty($_POST['razorpay_payment_id']) === false) {
 
 if ($success === true) {
 
-    $razorpay_order_id = $_SESSION['razorpay_order_id'];
-    $razorpay_payment_id = $_POST['razorpay_payment_id'];
-    $email = $_SESSION['email'];
-    $price = $_SESSION['price'];
-
-    $sql = "INSERT INTO `orders` (`order_id`, `razorpay_payment_id`, `price`, `status`, `email`) VALUES ('$razorpay_order_id','$razorpay_payment_id', '$price', 'success', '$email')";
-
-    if (mysqli_query($con, $sql)) {
-        echo "Payment Details  inserted to DB";
-    }
-
     $html = "<p>Your payment was successful</p>
              <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
 } else {
