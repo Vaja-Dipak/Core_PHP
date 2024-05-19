@@ -1,0 +1,13 @@
+Q.1 Write a program to create basic calculator using conditional statement
+
+Q.2 Write a program to find the largest of three numbers.
+
+Q.3 Write a program to find whether a number is Armstrong or not 
+
+Q.4 Write a program to find whether a number is Palindrom or not 
+
+Q.5 Write a program to calculate Electricity bill in PHP through class and function:
+    A. For first 50 units – Rs. 3.50/unit
+    B. For next 100 units – Rs. 4.00/unit
+    C. For next 100 units – Rs. 5.20/unit
+    D. For units above 250 – Rs. 6.50/unit
